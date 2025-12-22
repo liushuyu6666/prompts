@@ -59,14 +59,15 @@
     6.  **From:** Set to "RBC Mastercard".
 
 ### Step 3: Integrity Check (The Whitelist Validator)
-* **Action:** Before generating Output 1, review your extracted list against the Appendix.
+* **Action:** Perform a strict final validation before generating Output 1.
 * **Logic:**
-    * Look at the assigned `Shop Name` for every row.
-    * **Question:** Is this exact name listed in the `shop name list` column of the Appendix?
-    * **Decision:**
-        * **YES:** Pass.
-        * **NO:** The match failed or was hallucinated. You **MUST** prefix the name with `* ` (e.g., `* The Best Shop`) and ensure the Note says "New Merchant".
-* **Result:** This step ensures NO name appears in the final table without a `*` unless it strictly exists in your Appendix.
+    1.  For every transaction line, look at the `Shop Name` you are about to output.
+    2.  **Verification:** Search for this **exact string** in the `shop name list` column of the "Appendix: Map".
+    3.  **Strict Rule (Zero Tolerance):**
+        * **Condition:** Is the name found in the list?
+        * **YES:** Proceed.
+        * **NO:** The match failed. You **MUST** change the `Shop Name` to start with `* ` (e.g., `* The Best Shop`) and set the `Note` to "New Merchant".
+    4.  **Anti-Hallucination:** Do not assume a name is "correct" just because it looks readable. If it is not in the Appendix, it is **wrong** until flagged with `*`.
 
 ### Step 4: Formatting & Output
 * **Output 1: Transaction Table (TSV)**
