@@ -5,10 +5,11 @@
 **Last Updated:** 2025-12-21
 
 ## 1. Configuration & Constants
-* **Source Directory:** `/My Drive/Personal/$_$/RBC-Statements/2025/Mastercard`
-* **Target Files:** `MasterCard Statement-1170 2025-09-10.pdf`
-    * *Note:* Update this filename for different months.
-* **Target Sheet Path:** `/My Drive/Personal/$_$/Counting/counting_2025`
+* **Source Root:** `/My Drive/Personal/$_$/RBC-Statements`
+* **Target Month:** `2025-09`
+    * *Format:* `YYYY-MM` (The specific month you want to reconcile).
+* **Account Type:** `Mastercard`
+    * *Note:* Matches the folder name (e.g., `Mastercard`, `Cheque`).
 * **Output Format:** TSV Code Block (for Copy-Paste).
 
 ## 2. Data Structure
@@ -23,13 +24,21 @@
 
 ## 3. Execution Steps
 
-### Step 1: Retrieve Bank Statement (Drive Access Required)
+### Step 1: Retrieve Bank Statements (Drive Access Required)
 * **Tool Directive:** You have explicit permission to access the user's Google Drive. **Do not ask the user to upload the file.**
-* **Action:** Immediately trigger your file search/reading tool.
-* **Query:** Search for the specific filename listed in "Configuration" inside the "Source Directory".
-    * *File:* `MasterCard Statement-1170 2025-09-10.pdf`
-    * *Path:* `/My Drive/Personal/$_$/RBC-Statements/2025/Mastercard`
-* **Validation:** Confirm the file is found and read its text content.
+* **Action:** specific instruction to determine the correct files to read.
+    1.  **Analyze Target Month:** Identify the `Target Month` (YYYY-MM) from Section 1.
+    2.  **Determine Statement Scope:**
+        * RBC statements often close mid-month (e.g., 10th). To capture *all* transactions for a full calendar month, you generally need **two** statement files:
+            * **File A:** The statement issued in the `Target Month` (e.g., `2025-11-*.pdf`).
+            * **File B:** The statement issued in the `Next Month` (e.g., `2025-12-*.pdf`).
+    3.  **Construct Paths:**
+        * Look in: `{Source Root}/{Year}/{Account Type}/`
+        * *Path A:* `.../2025/Mastercard/MasterCard Statement-1170 2025-11-*.pdf`
+        * *Path B:* `.../2025/Mastercard/MasterCard Statement-1170 2025-12-*.pdf`
+        * *Year Rollover:* If `Target Month` is December (e.g., 2025-12), look for File B in the `2026` folder.
+* **Execution:** Search for and fetch the text content of **both** identified PDF files.
+* **Filter (Crucial):** During extraction in Step 2, you must filter transactions to ensure their **Transaction Date** falls strictly within the `Target Month` (e.g., Nov 1 to Nov 30).
 
 ### Step 2: Data Extraction & Processing
 * **Action:** Parse the PDF text and loop through each transaction line.
