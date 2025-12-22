@@ -57,7 +57,9 @@
             * **Draft Name:** Create a reasonable name (Title Case).
             * **Flag:** Mark it as "New Merchant".
     4.  **Money:** Extract Amount.
-    5.  **Type:** Use Formula Rule (see below).
+    5.  **Type (Formula):**
+        * **ALWAYS** output this specific formula for **EVERY** row:
+        * `=IF(ISBLANK(INDIRECT("C"&ROW())),"",INDEX(overview!B:B,MATCH(INDIRECT("C"&ROW()),overview!A:A, 0)))`
     6.  **From:** Set to "RBC Mastercard".
 
 ### Step 3: Integrity Check (The Whitelist Validator)
