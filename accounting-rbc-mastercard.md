@@ -49,21 +49,26 @@
         * Extract the raw description from the PDF line.
         * **Scan the Map:** Iterate through the **"Appendix: Map"**.
         * **Check Condition:** Does the raw description **CONTAIN** the `SEARCH_KEYWORD` from the map?
-            * *Instruction:* The `SEARCH_KEYWORD` is a strict substring to look for.
         * **If Match Found:**
             * Use the corresponding `shop name list` and `note`.
-        * **If No Match (New Merchant):**
-            * Set `Shop Name` = `* [Reasonable Name]` (Convert to Title Case).
-            * **CRITICAL:** You **MUST** prefix the name with a `*` (asterisk) + space.
-            * Set `Note` = "New Merchant: [Insert Raw ACTIVITY DESCRIPTION here]".
-            * *Note on Type:* Do not guess the type. Leave it to the formula in Rule 5.
+        * **If No Match:**
+            * **Draft Name:** Create a reasonable name (Title Case).
+            * **Flag:** Mark it as "New Merchant".
     4.  **Money:** Extract Amount.
-    5.  **Type (Formula):**
-        * **ALWAYS** output this formula for **EVERY** row (Matched or New):
-        * `=IF(ISBLANK(INDIRECT("C"&ROW())),"",INDEX(overview!B:B,MATCH(INDIRECT("C"&ROW()),overview!A:A, 0)))`
+    5.  **Type:** Use Formula Rule (see below).
     6.  **From:** Set to "RBC Mastercard".
 
-### Step 3: Formatting & Output
+### Step 3: Integrity Check (The Whitelist Validator)
+* **Action:** Before generating Output 1, review your extracted list against the Appendix.
+* **Logic:**
+    * Look at the assigned `Shop Name` for every row.
+    * **Question:** Is this exact name listed in the `shop name list` column of the Appendix?
+    * **Decision:**
+        * **YES:** Pass.
+        * **NO:** The match failed or was hallucinated. You **MUST** prefix the name with `* ` (e.g., `* The Best Shop`) and ensure the Note says "New Merchant".
+* **Result:** This step ensures NO name appears in the final table without a `*` unless it strictly exists in your Appendix.
+
+### Step 4: Formatting & Output
 * **Output 1: Transaction Table (TSV)**
     * Generate a code block containing **Tab-Separated Values (TSV)**.
     * **Format:** Raw text where columns are separated by a single tab (`\t`) and rows by a newline.
