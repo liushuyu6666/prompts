@@ -67,19 +67,16 @@
         2	MMM DD	* New Place	0.00	=IF(...)	RBC Mastercard	New Merchant
         ```
 
-* **Output 2: Full Updated Appendix (Conditional)**
+* **Output 2: New Map Entries (Conditional)**
     * **Trigger:** If *any* "New Merchants" were found (items marked with `*`).
-    * **Format:** Markdown Code Block (Standard Table).
-    * **Content:** Print the **ENTIRE** "Appendix: Map" table (Old rows + New rows).
-    * **Sorting:** Alphabetical by `SEARCH_KEYWORD`.
+    * **Format:** Raw Markdown Table Rows (No header).
+    * **Content:** List **ONLY** the new rows to be appended to the Appendix.
+    * **Columns:** `| SEARCH_KEYWORD | shop name list | type | note |`
+    * **Instruction:** Use the uppercase raw text (or a clear unique part of it) as the `SEARCH_KEYWORD`.
     * **Deliverable:**
-        ```markdown
-        ## Appendix: Map
-        * **Reference Table:** Use `SEARCH_KEYWORD` as the specific text to find in the bank statement.
-
-        | SEARCH_KEYWORD | shop name list | type | note |
-        |:---|:---|:---|:---|
-        | ... | ... | ... | ... |
+        ```text
+        | RAW KEYWORD | * New Shop Name | [Category] | |
+        | ANOTHER KEY | * Another Shop | [Category] | |
         ```
 
 * **Output 3: Daily Summary (Testing)**
