@@ -395,3 +395,11 @@
 | LIVING IN KOREA | living in Korea | living |  |
 | RESTAURANT IN KOREA | restaurant in Korea | restaurant |  |
 | SUNNY FOODMART | sunny foodmart | grocery | |
+| THE BEST SHOP | The Best Shop | grocery |  |
+| CITY OF TORONTO FERRY | City Of Toronto Ferry | transportation |  |
+| 99 CENT DEPOT | 99 Cent Depot | grocery |  |
+| CLINE BOT INC | Cline Bot Inc | e-service |  |
+| MTO TSD SO TO SHEPPARD | Mto Tsd So To Sheppard | transportation |  |
+| THE ONE FUSION CUISINE | The One Fusion Cuisine | restaurant |  |
+| HORNBLOWER NIAGARA CRU | Hornblower Niagara Cru | entertainment |  |
+| TOMMY HILFIGER | Tommy Hilfiger | living |  |
