@@ -402,4 +402,11 @@
 | MTO TSD SO TO SHEPPARD | Mto Tsd So To Sheppard | transportation |  |
 | THE ONE FUSION CUISINE | The One Fusion Cuisine | restaurant |  |
 | HORNBLOWER NIAGARA CRU | Hornblower Niagara Cru | entertainment |  |
-| TOMMY HILFIGER | Tommy Hilfiger | living |  |
+| SHACK EGLINTON | Shake Shack | restaurant | |
+| GRAZIE RISTORANTE | Grazie | restaurant | |
+| BINGZ CRISPY BURGER | Bingz | restaurant | |
+| BOAT NOODLES | 555 boat noodles | restaurant | |
+| ZARA | zara | living | |
+| SPORT CHEK | sportchek | living | |
+| TOMMY HILFIGER | TOMMY HILFIGER | living | |
+| YMCA | YMCA | living | |
